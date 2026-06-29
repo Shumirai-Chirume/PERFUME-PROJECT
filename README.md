@@ -1,3 +1,68 @@
+# 🌸 Perfume Hub Core
+
+A luxury-inspired e-commerce and admin dashboard system for managing a premium perfume brand.  
+Built with React and focused on modern UI design, routing structure, and scalable frontend architecture.
+
+---
+
+## ✨ Project Overview
+
+Perfume Hub is a full frontend application that includes:
+
+- Customer-facing e-commerce pages
+- Product browsing experience
+- Cart and checkout system
+- Order history tracking
+- Admin dashboard system for full business management
+
+The design is inspired by **luxury fragrance houses**, focusing on elegance, structure, and clean UI systems.
+
+---
+
+## 🧠 Features
+
+### 🛍️ Customer Side
+- Home page with featured products
+- Product categories (Women, Men, Children)
+- Product detail pages with image gallery
+- Shopping cart system
+- Checkout page
+- Order history page
+
+### 🛠️ Admin Dashboard
+- Dashboard overview (KPIs + analytics layout)
+- Product management system
+- Category management
+- Order management
+- Customer management
+- Reports page
+- Settings page
+- Logout confirmation modal
+
+---
+
+## 🎨 UI Design
+
+- Luxury-inspired color palette (gold, champagne tones)
+- Responsive flex/grid layouts
+- Card-based product system
+- Sidebar-driven admin dashboard
+- Clean typography hierarchy
+
+---
+
+## 🧩 Tech Stack
+
+- React (TypeScript)
+- React Router DOM
+- Inline CSS + CSS Variables
+- Component-based architecture
+
+---
+
+## 📁 Project Structure
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
