@@ -1,38 +1,42 @@
 import SystemFilters from "../components/SystemFilters"
 import TransactionTable from "../components/TransactionTable"
-import ShipmentReview from "../components/ShipmentReview"
 import ShipmentManifestReview from "../components/ShipmentManifestReview"
+import Footer from "../components/Footer"
+
 
 function OrderHistory() {
   return (
-    <div style={styles.page}>
+    <section className="section">
+      <div className="container">
 
-      <h1 style={styles.title}>Order History</h1>
+        <div style={styles.page}>
 
-      <SystemFilters />
+          <h1 style={styles.title}>Order History</h1>
 
-      <TransactionTable />
+          <SystemFilters />
 
-      <ShipmentReview />
+          <TransactionTable />
 
-      <ShipmentManifestReview />
+          <ShipmentManifestReview />
 
-    </div>
+        </div>
+
+      </div>
+      <Footer />
+    </section>
   )
 }
 
 const styles: any = {
   page: {
-    padding: "24px",
     display: "flex",
     flexDirection: "column",
-    gap: "16px",
+    gap: "32px"
   },
 
   title: {
     margin: 0,
-    fontSize: "22px",
-    fontWeight: 600
+    color: "var(--rich-black)"
   }
 }
 

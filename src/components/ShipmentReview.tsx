@@ -43,7 +43,7 @@ const styles: any = {
   container: {
     border: "1px solid #e5e4e7",
     padding: "16px",
-    borderRadius: "6px",
+    borderRadius: "var(--radius-sm)",
     display: "flex",
     flexDirection: "column",
     gap: "12px"

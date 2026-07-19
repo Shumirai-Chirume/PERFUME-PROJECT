@@ -10,24 +10,35 @@ function Products() {
 
       <ProductsPageNav />
 
-      <div style={styles.main}>
-        <ProductGallery />
-        <ProductDetailsPanel />
-      </div>
+      <section className="section">
+        <div className="container">
 
-      <YouMayAlsoLike />
+          <div style={styles.main}>
+            <ProductGallery />
+            <ProductDetailsPanel />
+          </div>
+
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <YouMayAlsoLike />
+        </div>
+      </section>
+
       <Footer />
 
     </div>
   )
 }
 
-const styles: React.CSSProperties = {
+const styles: any = {
   main: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "40px",
-    padding: "20px"
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "48px",
+    alignItems: "start"
   }
 }
 

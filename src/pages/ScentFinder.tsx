@@ -1,0 +1,204 @@
+import { useState } from "react";
+import Footer from "../components/Footer";
+
+function ScentFinder() {
+
+  const [step, setStep] = useState(1);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [result, setResult] = useState("");
+
+  const questions = [
+    {
+      question: "What mood describes you best?",
+      options: [
+        "Elegant",
+        "Fresh",
+        "Romantic",
+        "Bold"
+      ]
+    },
+
+    {
+      question: "Which scent family attracts you?",
+      options: [
+        "Floral",
+        "Woody",
+        "Sweet",
+        "Spicy"
+      ]
+    },
+
+    {
+      question: "When will you wear your perfume?",
+      options: [
+        "Daily",
+        "Work",
+        "Date Night",
+        "Special Events"
+      ]
+    }
+  ];
+
+
+  const handleAnswer = (answer: string) => {
+
+    const updatedAnswers = [
+      ...answers,
+      answer
+    ];
+
+    setAnswers(updatedAnswers);
+
+
+    if(step < questions.length){
+
+      setStep(step + 1);
+
+    } else {
+
+      setResult(
+        `${updatedAnswers[0]} + ${updatedAnswers[1]} scent profile`
+      );
+
+    }
+
+  };
+
+
+  const restartQuiz = () => {
+    setStep(1);
+    setAnswers([]);
+    setResult("");
+  };
+
+
+  return (
+    <section className="section">
+
+      <div className="container">
+
+        <div style={styles.page}>
+
+
+          {!result ? (
+
+            <div style={styles.card}>
+
+              <h1>
+                Scent Finder
+              </h1>
+
+
+              <h3>
+                {questions[step - 1].question}
+              </h3>
+
+
+              {
+                questions[step - 1].options.map((option) => (
+
+                  <button
+                    key={option}
+                    style={styles.button}
+                    onClick={() => handleAnswer(option)}
+                  >
+                    {option}
+                  </button>
+
+                ))
+              }
+
+
+              <p>
+                Question {step} of {questions.length}
+              </p>
+
+
+            </div>
+
+
+          ) : (
+
+
+            <div style={styles.card}>
+
+              <h1>
+                Your Perfect Match
+              </h1>
+
+
+              <p style={styles.result}>
+                {result}
+              </p>
+
+
+              <button
+                style={styles.button}
+                onClick={restartQuiz}
+              >
+                Retake Quiz
+              </button>
+
+
+            </div>
+
+
+          )}
+
+
+        </div>
+
+      </div>
+
+
+      <Footer />
+
+    </section>
+  )
+
+}
+
+
+const styles:any = {
+
+  page:{
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
+  },
+
+
+  card:{
+    width:"400px",
+    padding:"30px",
+    backgroundColor:"white",
+    border:"1px solid var(--champagne)",
+    borderRadius:"var(--radius-md)",
+    boxShadow:"var(--shadow-card)",
+    display:"flex",
+    flexDirection:"column",
+    gap:"15px",
+    textAlign:"center"
+  },
+
+
+  button:{
+    backgroundColor:"var(--gold)",
+    color:"white",
+    border:"none",
+    padding:"12px",
+    borderRadius:"var(--radius-sm)",
+    cursor:"pointer",
+    fontWeight:600
+  },
+
+
+  result:{
+    fontSize:"20px",
+    fontWeight:600
+  }
+
+};
+
+
+export default ScentFinder;

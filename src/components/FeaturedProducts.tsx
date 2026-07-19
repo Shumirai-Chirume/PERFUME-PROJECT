@@ -7,9 +7,6 @@ function FeaturedProducts() {
 
       <div style={styles.container}>
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
       </div>
     </section>
   )
@@ -22,7 +19,7 @@ const styles: React.CSSProperties = {
   },
   container: {
     display: "flex",
-    justifyContent: "center", // 👈 THIS centers the row
+    justifyContent: "center", 
     gap: "15px",
     flexWrap: "wrap",
     marginTop: "15px"

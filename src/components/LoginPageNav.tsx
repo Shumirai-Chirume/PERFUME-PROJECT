@@ -1,7 +1,7 @@
 function LoginPageNav() {
   return (
     <div style={styles.container}>
-      <h2>LOGO</h2>
+      <h2>PERFUMEHUB</h2>
     </div>
   )
 }

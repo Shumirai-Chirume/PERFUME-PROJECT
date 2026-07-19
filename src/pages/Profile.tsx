@@ -1,60 +1,66 @@
 import PersonalIdentification from "../components/PersonalIdentification"
-import OlfactoryProfile from "../components/OlfactoryProfile" 
+import OlfactoryProfile from "../components/OlfactoryProfile"
 import AccountInfrastructure from "../components/AccountInfrastructure"
 import CommitUpdates from "../components/CommitUpdates"
 import AddressDirectory from "../components/AddressDirectory"
+import Footer from "../components/Footer"
 
 function Profile() {
   return (
-    <div style={styles.page}>
+    <section className="section">
+      <div className="container">
 
-      <h1 style={styles.title}>Profile Settings</h1>
+        <div style={styles.page}>
 
-      <div style={styles.gridTop}>
+          <h1 style={styles.pageTitle}>Profile Settings</h1>
 
-        <PersonalIdentification />
-        <OlfactoryProfile />
-        <AccountInfrastructure />
+          <div style={styles.gridTop}>
+
+            <PersonalIdentification />
+            <OlfactoryProfile />
+            <AccountInfrastructure />
+
+          </div>
+
+          <CommitUpdates />
+
+          <div style={styles.gridBottom}>
+
+            <AddressDirectory />
+
+          </div>
+
+        </div>
 
       </div>
-
-      <CommitUpdates />
-
-      <div style={styles.gridBottom}>
-
-        <AddressDirectory />
-
-      </div>
-
-    </div>
+      <Footer />
+    </section>
   )
 }
 
 const styles: any = {
   page: {
-    padding: "24px",
     display: "flex",
     flexDirection: "column",
-    gap: "16px",
+    gap: "32px"
   },
 
-  title: {
+  pageTitle: {
     margin: 0,
-    fontSize: "22px",
-    fontWeight: 600
+    color: "var(--rich-black)"
   },
 
   gridTop: {
     display: "grid",
     gridTemplateColumns: "1.2fr 1fr 1fr",
-    gap: "16px",
+    gap: "24px",
     alignItems: "start"
   },
 
   gridBottom: {
     display: "grid",
     gridTemplateColumns: "1fr",
-    gap: "16px"
+    gap: "24px"
   }
 }
 

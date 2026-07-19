@@ -11,11 +11,37 @@ function Home() {
     <div>
 
       <HomeTopNav />
-      <HeroSection />
-      <ShopByDepartment />
-      <ScentFinderStrip />
-      <FeaturedProducts />
-      <BrandStory />
+
+      <section className="section">
+        <div className="container">
+          <HeroSection />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <ShopByDepartment />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <ScentFinderStrip />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <FeaturedProducts />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <BrandStory />
+        </div>
+      </section>
+
       <Footer />
 
     </div>

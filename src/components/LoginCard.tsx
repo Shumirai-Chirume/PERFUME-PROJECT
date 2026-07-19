@@ -1,78 +1,143 @@
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
+
 function LoginCard() {
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  const handleLogin = () => {
+
+    const success = login(email, password);
+
+
+    if(success){
+
+      alert("Login successful!");
+
+      navigate("/profile");
+
+    } else {
+
+      alert("Invalid email or password");
+
+    }
+
+  };
+
+
   return (
     <div style={styles.card}>
 
-      <h1 style={styles.heading}>Welcome Back</h1>
 
-      <input type="email" placeholder="Email" style={styles.input} />
+      <h1 style={styles.heading}>
+        Welcome Back
+      </h1>
 
-      <input type="password" placeholder="Password" style={styles.input} />
 
-      <p style={styles.link}>Forgot Password?</p>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e)=>setEmail(e.target.value)}
+      />
 
-      <button style={styles.button}>Login</button>
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e)=>setPassword(e.target.value)}
+      />
+
+
+      <p style={styles.link}>
+        Forgot Password?
+      </p>
+
+
+      <button
+        className="btn btn-primary"
+        onClick={handleLogin}
+      >
+        Login
+      </button>
+
 
       <div style={styles.divider}>
         <span>OR</span>
       </div>
 
-      <button style={styles.googleButton}>
+
+      <button className="btn btn-google">
         Continue with Google
       </button>
 
-      <p style={styles.signup}>
-        New here? Create Account
-      </p>
+
+      <p
+  style={styles.signup}
+  onClick={() => navigate("/register")}
+>
+  New here? Create Account
+</p>
+
 
     </div>
   )
 }
 
-const styles: any = {
-  card: {
-    width: "350px",
-    margin: "40px auto",
-    padding: "30px",
-    border: "1px solid #ddd",
-    borderRadius: "10px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px"
+
+const styles:any = {
+
+  card:{
+    width:"350px",
+    margin:"40px auto",
+    padding:"30px",
+    border:"1px solid var(--champagne)",
+    borderRadius:"var(--radius-md)",
+    display:"flex",
+    flexDirection:"column",
+    gap:"15px",
+    backgroundColor:"white",
+    boxShadow:"var(--shadow-card)"
   },
 
-  heading: {
-   fontSize: "32px",
-   textAlign: "center",
-   margin: 0
+
+  heading:{
+    fontSize:"32px",
+    textAlign:"center",
+    margin:0,
+    color:"var(--rich-black)"
   },
 
-  input: {
-    padding: "10px"
+
+  divider:{
+    textAlign:"center"
   },
 
-  button: {
-    padding: "12px",
-    cursor: "pointer"
+
+  link:{
+    fontSize:"14px",
+    cursor:"pointer",
+    color:"var(--neutral-grey)"
   },
 
-  googleButton: {
-    padding: "12px",
-    cursor: "pointer"
-  },
-
-  divider: {
-    textAlign: "center"
-  },
-
-  link: {
-    fontSize: "14px",
-    cursor: "pointer"
-  },
 
   signup: {
-    textAlign: "center",
-    fontSize: "14px"
-  }
+  textAlign: "center",
+  fontSize: "14px",
+  color: "var(--charcoal)",
+  cursor: "pointer"
 }
 
-export default LoginCard
+}
+
+
+export default LoginCard;

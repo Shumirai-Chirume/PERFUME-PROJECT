@@ -3,19 +3,17 @@ import { Link } from "react-router-dom"
 function Navbar() {
   return (
     <nav style={styles.nav}>
-
       <div style={styles.links}>
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        <Link to="/cart">Cart</Link>
-        <Link to="/checkout">Checkout</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/order-history">Order History</Link>
+        <Link style={styles.link} to="/">Home</Link>
+        <Link style={styles.link} to="/products">Products</Link>
+        <Link style={styles.link} to="/cart">Cart</Link>
+        <Link style={styles.link} to="/checkout">Checkout</Link>
+        <Link style={styles.link} to="/login">Login</Link>
+        <Link style={styles.link} to="/register">Register</Link>
+        <Link style={styles.link} to="/dashboard">Dashboard</Link>
+        <Link style={styles.link} to="/profile">Profile</Link>
+        <Link style={styles.link} to="/order-history">Order History</Link>
       </div>
-
     </nav>
   )
 }
@@ -29,9 +27,11 @@ const styles: any = {
     height: "60px",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     padding: "0 20px",
-    borderBottom: "1px solid #ddd",
-    backgroundColor: "grey",
+    borderBottom: "1px solid var(--grey)",
+    backgroundColor: "#C8A97E",
+    backdropFilter: "blur(8px)",
     zIndex: 1000
   },
 
@@ -39,6 +39,14 @@ const styles: any = {
     display: "flex",
     gap: "20px",
     justifyContent: "flex-start"
+  },
+
+  link: {
+    color: "var(--charcoal)",
+    fontSize: "15px",
+    fontWeight: 500,
+    letterSpacing: "0.3px",
+    transition: "0.2s ease"
   }
 }
 

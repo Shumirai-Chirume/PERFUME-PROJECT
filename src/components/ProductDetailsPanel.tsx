@@ -1,23 +1,48 @@
+import { useCart } from "../context/CartContext";
+
 function ProductDetailsPanel() {
+  const { addToCart } = useCart();
+
   return (
     <div style={styles.container}>
 
-      <h2>Name + Size</h2>
+      <h2>CHANCE CHANEL</h2>
 
-      <p>Price</p>
+      <p>$150.99</p>
 
       <div>
-        <p>Scent Profile (Top / Heart / Base)</p>
+        <p>Scent Profile (sweet / fresh / floral)</p>
       </div>
 
       <div>
-        <p>Size Selector</p>
+        <p>size: 10 oz</p>
       </div>
 
-      <button>Add to Bag</button>
+     <button
+  style={styles.button}
+  onClick={() =>
+    addToCart({
+      id: "chance-chanel",
+      name: "CHANCE CHANEL",
+      size: "10 oz",
+      scent: "Sweet / Fresh / Floral",
+      price: 150.99
+    })
+  }
+  onMouseEnter={(e) =>
+    (e.currentTarget.style.backgroundColor = "var(--gold-dark)")
+  }
+  onMouseLeave={(e) =>
+    (e.currentTarget.style.backgroundColor = "var(--gold)")
+  }
+>
+  Add to Bag
+</button>
 
       <div>
-        <p>Description (Accordion)</p>
+        <p>
+          A fragrance that is strongly sweet yet delicately fresh with a hint of floral notes
+        </p>
       </div>
 
       <div>
@@ -25,15 +50,28 @@ function ProductDetailsPanel() {
       </div>
 
     </div>
-  )
+  );
 }
 
-const styles: React.CSSProperties = {
+const styles: any = {
   container: {
     width: "300px",
     padding: "20px",
-    border: "1px solid #ddd"
-  }
-}
+    border: "1px solid #C8A97E",
+    borderRadius: "8px"
+  },
 
-export default ProductDetailsPanel
+  button: {
+    backgroundColor: "var(--gold)",
+    color: "white",
+    border: "none",
+    borderRadius: "var(--radius-sm)",
+    padding: "12px 20px",
+    fontSize: "15px",
+    fontWeight: 600,
+    cursor: "pointer",
+    transition: "0.2s ease"
+  }
+};
+
+export default ProductDetailsPanel;

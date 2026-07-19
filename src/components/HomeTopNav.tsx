@@ -4,7 +4,7 @@ function HomeTopNav() {
       
       {/* Block 1 */}
       <div style={styles.block}>
-        Login
+        Logo
       </div>
 
       {/* Block 2 */}
@@ -21,7 +21,7 @@ function HomeTopNav() {
   )
 }
 
-const styles: React.CSSProperties = {
+const styles: any = {
   container: {
     display: "flex",
     justifyContent: "space-between",
