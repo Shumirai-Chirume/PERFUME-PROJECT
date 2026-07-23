@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 function ScentFinder() {
+
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -40,12 +43,13 @@ function ScentFinder() {
   ];
 
 
-  const handleAnswer = (answer: string) => {
+  const handleAnswer = (answer:string)=>{
 
-    const updatedAnswers = [
+    const updatedAnswers=[
       ...answers,
       answer
     ];
+
 
     setAnswers(updatedAnswers);
 
@@ -65,140 +69,219 @@ function ScentFinder() {
   };
 
 
-  const restartQuiz = () => {
+
+  const restartQuiz=()=>{
+
     setStep(1);
     setAnswers([]);
     setResult("");
+
   };
 
 
+
   return (
-    <section className="section">
 
-      <div className="container">
-
-        <div style={styles.page}>
+<section className="section">
 
 
-          {!result ? (
-
-            <div style={styles.card}>
-
-              <h1>
-                Scent Finder
-              </h1>
+<div className="container">
 
 
-              <h3>
-                {questions[step - 1].question}
-              </h3>
+<div style={styles.page}>
 
 
-              {
-                questions[step - 1].options.map((option) => (
-
-                  <button
-                    key={option}
-                    style={styles.button}
-                    onClick={() => handleAnswer(option)}
-                  >
-                    {option}
-                  </button>
-
-                ))
-              }
+{!result ? (
 
 
-              <p>
-                Question {step} of {questions.length}
-              </p>
+<div style={styles.card}>
 
 
-            </div>
+<h1>
+Scent Finder
+</h1>
 
 
-          ) : (
+
+<h3>
+{questions[step-1].question}
+</h3>
 
 
-            <div style={styles.card}>
 
-              <h1>
-                Your Perfect Match
-              </h1>
+{
+questions[step-1].options.map((option)=>(
 
+<button
 
-              <p style={styles.result}>
-                {result}
-              </p>
+key={option}
 
+style={styles.button}
 
-              <button
-                style={styles.button}
-                onClick={restartQuiz}
-              >
-                Retake Quiz
-              </button>
+onClick={()=>handleAnswer(option)}
 
+>
 
-            </div>
+{option}
 
+</button>
 
-          )}
+))
+}
 
 
-        </div>
 
-      </div>
+<p>
+Question {step} of {questions.length}
+</p>
 
 
-      <Footer />
+</div>
 
-    </section>
-  )
+
+
+) : (
+
+
+
+<div style={styles.card}>
+
+
+<h1>
+Your Perfect Match
+</h1>
+
+
+
+<p style={styles.result}>
+{result}
+</p>
+
+
+
+<div style={styles.actions}>
+
+
+<button
+
+style={styles.secondaryButton}
+
+onClick={restartQuiz}
+
+>
+Retake Quiz
+</button>
+
+
+
+<button
+
+style={styles.button}
+
+onClick={()=>navigate("/products")}
+
+>
+Shop Now
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+)}
+
+
+
+</div>
+
+
+</div>
+
+
+<Footer />
+
+
+</section>
+
+)
 
 }
 
 
-const styles:any = {
 
-  page:{
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center"
-  },
+const styles:any={
 
 
-  card:{
-    width:"400px",
-    padding:"30px",
-    backgroundColor:"white",
-    border:"1px solid var(--champagne)",
-    borderRadius:"var(--radius-md)",
-    boxShadow:"var(--shadow-card)",
-    display:"flex",
-    flexDirection:"column",
-    gap:"15px",
-    textAlign:"center"
-  },
+page:{
+display:"flex",
+justifyContent:"center",
+alignItems:"center"
+},
 
 
-  button:{
-    backgroundColor:"var(--gold)",
-    color:"white",
-    border:"none",
-    padding:"12px",
-    borderRadius:"var(--radius-sm)",
-    cursor:"pointer",
-    fontWeight:600
-  },
+
+card:{
+width:"400px",
+padding:"30px",
+backgroundColor:"white",
+border:"1px solid var(--champagne)",
+borderRadius:"var(--radius-md)",
+boxShadow:"var(--shadow-card)",
+display:"flex",
+flexDirection:"column",
+gap:"15px",
+textAlign:"center"
+},
 
 
-  result:{
-    fontSize:"20px",
-    fontWeight:600
-  }
+
+button:{
+backgroundColor:"var(--gold)",
+color:"white",
+border:"none",
+padding:"12px",
+borderRadius:"var(--radius-sm)",
+cursor:"pointer",
+fontWeight:600
+},
+
+
+
+secondaryButton:{
+backgroundColor:"white",
+color:"var(--charcoal)",
+border:"1px solid var(--gold)",
+padding:"12px",
+borderRadius:"var(--radius-sm)",
+cursor:"pointer",
+fontWeight:600
+},
+
+
+
+actions:{
+display:"flex",
+justifyContent:"center",
+gap:"15px",
+marginTop:"15px"
+},
+
+
+
+result:{
+fontSize:"20px",
+fontWeight:600
+}
+
 
 };
+
 
 
 export default ScentFinder;

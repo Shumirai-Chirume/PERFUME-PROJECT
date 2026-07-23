@@ -2,6 +2,7 @@ import { useCart } from "../context/CartContext";
 import dolce from "../assets/dolce.webp";
 import pink from "../assets/pink.avif";
 import rPerfume from "../assets/R.jpeg";
+import AddToCartButton from "./AddToCartButton";
 
 const products = [
   {
@@ -30,31 +31,44 @@ const products = [
   }
 ];
 
+
 function ProductCard() {
+
   const { addToCart } = useCart();
+
 
   return (
     <>
       {products.map((product) => (
+
         <div
           key={product.id}
           className="product-card"
           style={styles.card}
         >
+
           <div
             style={{
               ...styles.image,
-              backgroundImage: `url(${product.image})`
+              backgroundImage:`url(${product.image})`
             }}
-          ></div>
+          />
 
-          <h3 style={styles.name}>{product.name}</h3>
 
-          <p style={styles.price}>${product.price}</p>
+          <h3 style={styles.name}>
+            {product.name}
+          </h3>
 
-          <button
-            className="btn btn-primary"
-            onClick={() =>
+
+          <p style={styles.price}>
+            ${product.price}
+          </p>
+
+
+
+          <AddToCartButton
+
+            onAdd={() =>
               addToCart({
                 id: product.id,
                 name: product.name,
@@ -64,52 +78,68 @@ function ProductCard() {
                 image: product.image
               })
             }
+
           >
             Add to Cart
-          </button>
+
+          </AddToCartButton>
+
+
+
         </div>
+
       ))}
     </>
   );
 }
 
-const styles: any = {
-  card: {
-    width: "260px",
-    padding: "16px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "12px",
-    backgroundColor: "white",
-    borderRadius: "var(--radius-md)",
-    boxShadow: "var(--shadow-card)",
-    transition: "400ms cubic-bezier(0.16, 1, 0.3, 1)",
-    cursor: "pointer"
-  },
 
-  image: {
-    height: "320px",
-    borderRadius: "var(--radius-md)",
-    background: "linear-gradient(160deg, #F5EFE6, #EAE3D5)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    boxShadow: "var(--shadow-card)"
-  },
 
-  name: {
-    margin: 0,
-    fontFamily: "var(--heading-font)",
-    color: "var(--rich-black)",
-    fontSize: "20px",
-    fontWeight: 500
-  },
+const styles:any={
 
-  price: {
-    margin: 0,
-    color: "var(--charcoal)",
-    fontWeight: 400
-  }
-};
+card:{
+width:"260px",
+padding:"16px",
+display:"flex",
+flexDirection:"column",
+gap:"12px",
+backgroundColor:"white",
+borderRadius:"var(--radius-md)",
+boxShadow:"var(--shadow-card)",
+transition:"400ms cubic-bezier(0.16,1,0.3,1)",
+cursor:"pointer"
+},
+
+
+image:{
+height:"320px",
+borderRadius:"var(--radius-md)",
+background:"linear-gradient(160deg,#F5EFE6,#EAE3D5)",
+backgroundSize:"cover",
+backgroundPosition:"center",
+backgroundRepeat:"no-repeat",
+boxShadow:"var(--shadow-card)"
+},
+
+
+name:{
+margin:0,
+fontFamily:"var(--heading-font)",
+color:"var(--rich-black)",
+fontSize:"20px",
+fontWeight:500
+},
+
+
+price:{
+margin:0,
+color:"var(--charcoal)",
+fontWeight:400
+}
+
+
+}
+
+
 
 export default ProductCard;

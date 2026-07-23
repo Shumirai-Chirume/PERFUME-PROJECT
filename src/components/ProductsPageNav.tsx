@@ -1,39 +1,133 @@
+import { Link } from "react-router-dom";
+
 function ProductsPageNav() {
+
   return (
+
     <div style={styles.container}>
-      
-      <div style={styles.logo}>
-        Logo
+
+
+      {/* LOGIN */}
+      <div style={styles.block}>
+
+        <Link
+          to="/login"
+          style={styles.link}
+        >
+          Login
+        </Link>
+
       </div>
 
-      <div style={styles.nav}>
-        Shop / About / Journal
+
+
+      {/* MAIN LINKS */}
+      <div style={styles.block}>
+
+
+        <Link
+          to="/products"
+          style={styles.link}
+        >
+          Shop
+        </Link>
+
+
+        <Link
+          to="/about"
+          style={styles.link}
+        >
+          About
+        </Link>
+
+
+        <Link
+          to="/journal"
+          style={styles.link}
+        >
+          Journal
+        </Link>
+
+
       </div>
 
-      <div style={styles.cart}>
-        Search / Account / Cart
+
+
+
+      {/* CUSTOMER ACTIONS */}
+      <div style={styles.block}>
+
+
+        <Link
+          to="/search"
+          style={styles.link}
+        >
+          Search
+        </Link>
+
+
+        <Link
+          to="/profile"
+          style={styles.link}
+        >
+          Account
+        </Link>
+
+
+        <Link
+          to="/cart"
+          style={styles.link}
+        >
+          Cart
+        </Link>
+
+
       </div>
+
+
 
     </div>
+
   )
+
 }
 
-const styles: React.CSSProperties = {
-  container: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "15px 20px",
-    borderBottom: "1px solid #ddd"
-  },
-  logo: {},
-  nav: {
-    display: "flex",
-    gap: "10px"
-  },
-  cart: {
-    display: "flex",
-    gap: "10px"
-  }
+
+
+const styles:any={
+
+
+container:{
+display:"flex",
+justifyContent:"space-between",
+alignItems:"center",
+padding:"15px 20px",
+borderBottom:"1px solid #ddd",
+backgroundColor:"white"
+},
+
+
+
+block:{
+display:"flex",
+gap:"15px",
+alignItems:"center"
+},
+
+
+
+link:{
+textDecoration:"none",
+color:"var(--charcoal)",
+fontSize:"14px",
+fontWeight:500,
+cursor:"pointer",
+transition:"0.2s ease"
 }
 
-export default ProductsPageNav
+
+}
+
+
+
+export default ProductsPageNav;

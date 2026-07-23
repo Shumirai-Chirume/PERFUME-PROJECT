@@ -19,7 +19,11 @@ import OrderManagement from "./admin/pages/OrderManagement"
 import CustomerManagement from "./admin/pages/CustomerManagement"
 import Reports from "./admin/pages/Reports"
 import Settings from "./admin/pages/Settings"
-import Shipment from "./pages/Shipment";
+import Shipment from "./pages/Shipment"
+import About from "./pages/About";
+import Journal from "./pages/Journal";
+import Search from "./pages/Search";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -64,6 +68,16 @@ function App() {
  path="/shipment" 
  element={<Shipment />} 
 />
+<Route path="/about" element={<About />} />
+
+<Route path="/journal" element={<Journal />} />
+
+<Route path="/search" element={<Search />} />
+<Route
+path="/product/:id"
+element={<ProductDetails />}
+/>
+
 
       {/* CUSTOMER WEBSITE */}
       <Route
