@@ -3,16 +3,16 @@ function LoginPageNav() {
     <div style={styles.container}>
       <h2>PERFUMEHUB</h2>
     </div>
-  )
+  );
 }
 
-const styles: React.CSSProperties = {
+const styles = {
   container: {
     display: "flex",
     justifyContent: "center",
     padding: "20px",
-    borderBottom: "1px solid #ddd"
-  }
-}
+    borderBottom: "1px solid #ddd",
+  },
+};
 
-export default LoginPageNav
+export default LoginPageNav;
