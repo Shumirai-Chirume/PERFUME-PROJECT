@@ -1,38 +1,35 @@
+import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import AddToCartButton from "./AddToCartButton";
 
 
-function Wishlist(){
-
-const {addToCart}=useCart();
+function Wishlist() {
 
 
-
-const velvetOud={
-
-id:"101",
-name:"Velvet Oud",
-scent:"Woody • Oriental",
-price:120,
-size:"100ml"
-
-};
+const { addToCart } = useCart();
 
 
 
-const goldenAmber={
+const [wishlist] = useState<any[]>(()=>{
 
-id:"102",
-name:"Golden Amber",
-scent:"Warm • Sweet • Amber",
-price:95,
-size:"100ml"
 
-};
+const saved =
+localStorage.getItem("wishlist");
+
+
+
+return saved
+? JSON.parse(saved)
+: [];
+
+
+});
+
 
 
 
 return(
+
 
 <div style={styles.container}>
 
@@ -43,20 +40,70 @@ Curated Private Wishlist
 
 
 
-<div style={styles.card}>
+
+{
+wishlist.length === 0 ?
+
+
+<p>
+Your wishlist is empty.
+</p>
+
+
+
+:
+
+
+wishlist.map((item)=>(
+
+
+<div
+key={item.id}
+style={styles.card}
+>
 
 
 <h4 className="product-title">
-Velvet Oud
+
+{item.name}
+
 </h4>
+
+
+
+<p>
+{item.scent}
+</p>
+
+
+
+<p>
+${item.price}
+</p>
+
 
 
 
 <AddToCartButton
 
-onAdd={()=>addToCart(velvetOud)}
+onAdd={()=>addToCart({
+
+id:String(item.id),
+
+name:item.name,
+
+scent:item.scent,
+
+price:Number(item.price),
+
+size:item.size || "100ml",
+
+image:item.image
+
+})}
 
 >
+
 Quick Add To Bag
 
 </AddToCartButton>
@@ -66,34 +113,15 @@ Quick Add To Bag
 </div>
 
 
+))
 
 
-
-<div style={styles.card}>
-
-
-<h4 className="product-title">
-Golden Amber
-</h4>
-
-
-
-<AddToCartButton
-
-onAdd={()=>addToCart(goldenAmber)}
-
->
-Quick Add To Bag
-
-</AddToCartButton>
+}
 
 
 
 </div>
 
-
-
-</div>
 
 )
 
@@ -101,34 +129,57 @@ Quick Add To Bag
 
 
 
+
+
 const styles:any={
 
 
 container:{
+
 flex:1,
+
 border:"1px solid var(--champagne)",
+
 borderRadius:"var(--radius-md)",
+
 padding:"20px",
+
 display:"flex",
+
 flexDirection:"column",
+
 gap:"15px",
+
 backgroundColor:"white",
+
 boxShadow:"var(--shadow-card)"
+
 },
 
 
+
 card:{
+
 padding:"14px",
+
 border:"1px solid var(--champagne)",
+
 borderRadius:"var(--radius-sm)",
+
 backgroundColor:"white",
+
 display:"flex",
+
 flexDirection:"column",
+
 gap:"10px"
+
 }
 
 
+
 }
+
 
 
 export default Wishlist;

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import products from "../data/products";
+import { getProducts } from "../api";
+import type { Product } from "../api";
 
 
 function Search() {
@@ -10,6 +11,20 @@ function Search() {
 const navigate = useNavigate();
 
 const [query,setQuery]=useState("");
+
+const [products,setProducts]=useState<Product[]>([]);
+
+
+
+useEffect(()=>{
+
+getProducts()
+.then(setProducts)
+.catch(error =>
+console.error("Failed loading products:",error)
+);
+
+},[]);
 
 
 
@@ -54,11 +69,11 @@ style={styles.search}
 filteredProducts.length > 0 ? (
 
 
-filteredProducts.map((product,index)=>(
+filteredProducts.map((product)=>(
 
 
 <div
-key={index}
+key={product.id}
 style={styles.card}
 >
 

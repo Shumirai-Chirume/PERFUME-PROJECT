@@ -1,39 +1,78 @@
-import ProductsPageNav from "../components/ProductsPageNav";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-import products from "../data/products";
 import { useNavigate } from "react-router-dom";
+import { getProducts } from "../api";
+import type { Product } from "../api";
 
 
-function Shop() {
+function Search() {
+
 
 const navigate = useNavigate();
+
+const [query,setQuery]=useState("");
+
+const [products,setProducts]=useState<Product[]>([]);
+
+
+
+useEffect(()=>{
+
+getProducts()
+.then(setProducts)
+.catch(error =>
+console.error("Failed loading products:",error)
+);
+
+},[]);
+
+
+
+const filteredProducts =
+products.filter(product =>
+product.name
+.toLowerCase()
+.includes(query.toLowerCase())
+);
+
 
 
 return (
 
-<div>
-
-<ProductsPageNav />
-
-
-<section className="section">
-
-<div className="container">
+<div style={styles.page}>
 
 
 <h1>
-Perfume Collection
+Search Perfumes
 </h1>
 
 
-<div style={styles.grid}>
+
+<input
+
+placeholder="Search by perfume name..."
+
+value={query}
+
+onChange={(e)=>setQuery(e.target.value)}
+
+style={styles.search}
+
+/>
+
+
+
+<div style={styles.results}>
 
 
 {
-products.map((product)=>(
+filteredProducts.length > 0 ? (
 
 
-<div 
+filteredProducts.map((product)=>(
+
+
+<div
 key={product.id}
 style={styles.card}
 >
@@ -68,12 +107,12 @@ ${product.price}
 
 style={styles.button}
 
-onClick={()=>navigate(`/product/${product.id}`)}
+onClick={() =>
+navigate(`/product/${product.id}`)
+}
 
 >
-
 View Product
-
 </button>
 
 
@@ -83,15 +122,22 @@ View Product
 
 ))
 
+
+)
+
+:(
+
+<p>
+No perfumes found
+</p>
+
+)
+
 }
 
 
 </div>
 
-
-</div>
-
-</section>
 
 
 <Footer />
@@ -101,6 +147,7 @@ View Product
 
 )
 
+
 }
 
 
@@ -108,17 +155,50 @@ View Product
 const styles:any={
 
 
-grid:{
+page:{
+
+padding:"40px",
+
+display:"flex",
+
+flexDirection:"column",
+
+alignItems:"center",
+
+gap:"25px"
+
+},
+
+
+
+search:{
+
+width:"400px",
+
+height:"45px",
+
+padding:"0 15px",
+
+borderRadius:"var(--radius-md)",
+
+border:"1px solid var(--champagne)"
+
+},
+
+
+
+results:{
 
 display:"grid",
 
 gridTemplateColumns:"repeat(3,1fr)",
 
-gap:"30px",
+gap:"25px",
 
-marginTop:"30px"
+width:"80%"
 
 },
+
 
 
 card:{
@@ -136,17 +216,19 @@ textAlign:"center"
 },
 
 
+
 image:{
 
-width:"100%",
+width:"200px",
 
-height:"300px",
+height:"250px",
 
 objectFit:"cover",
 
 borderRadius:"var(--radius-md)"
 
 },
+
 
 
 button:{
@@ -157,7 +239,7 @@ color:"white",
 
 border:"none",
 
-padding:"12px 20px",
+padding:"10px 20px",
 
 borderRadius:"var(--radius-sm)",
 
@@ -170,4 +252,4 @@ cursor:"pointer"
 
 
 
-export default Shop;
+export default Search;

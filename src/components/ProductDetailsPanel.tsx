@@ -1,5 +1,5 @@
-import { useCart } from "../context/CartContext";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 interface Props {
   product: any;
@@ -7,13 +7,27 @@ interface Props {
 
 function ProductDetailsPanel({ product }: Props) {
 
-  const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
 
+  const { addToCart } = useCart();
 
   const handleAdd = () => {
 
-    addToCart(product);
+    addToCart({
+
+      id: String(product.id),
+
+      name: product.name,
+
+      price: Number(product.price),
+
+      scent: product.category?.name || "Luxury",
+
+      size: "100ml",
+
+      image: product.image_url
+
+    });
 
     setAdded(true);
 
@@ -23,85 +37,67 @@ function ProductDetailsPanel({ product }: Props) {
 
   };
 
-
   return (
 
     <div style={styles.container}>
 
-
       <div style={styles.imageContainer}>
 
         <img
-          src={product.image}
+          src={product.image_url}
           alt={product.name}
           style={styles.image}
         />
 
       </div>
 
-
-
       <div style={styles.details}>
-
 
         <h1>
           {product.name}
         </h1>
 
-
         <h2>
-          ${product.price}
+          ${Number(product.price).toFixed(2)}
         </h2>
 
-
         <p>
-          Scent Profile:
-          <br/>
-          {product.scent}
+          Category:
+          <br />
+          {product.category?.name}
         </p>
 
-
         <p>
-          Size:
-          <br/>
-          {product.size}
+          Stock Available:
+          <br />
+          {product.stock_quantity}
         </p>
-
-
 
         <button
-
           style={{
             ...styles.button,
             backgroundColor:
               added
-              ? "#4CAF50"
-              : "var(--gold)"
+                ? "#4CAF50"
+                : "var(--gold)"
           }}
-
           onClick={handleAdd}
-
         >
 
           {
             added
-            ? "Added ✓"
-            : "Add to Bag"
+              ? "Added ✓"
+              : "Add to Bag"
           }
-
 
         </button>
 
-
-
         <p style={styles.description}>
           {product.description ||
-          "A luxurious fragrance crafted with premium notes designed to create a memorable signature scent."}
+            "A luxurious fragrance crafted with premium notes designed to create a memorable signature scent."}
         </p>
 
-
       </div>
-
 
     </div>
 
@@ -109,107 +105,92 @@ function ProductDetailsPanel({ product }: Props) {
 
 }
 
+const styles: any = {
 
+  container: {
 
-const styles:any = {
+    display: "flex",
 
+    justifyContent: "center",
 
-container:{
+    alignItems: "center",
 
-display:"flex",
+    gap: "50px",
 
-justifyContent:"center",
+    width: "900px",
 
-alignItems:"center",
+    backgroundColor: "white",
 
-gap:"50px",
+    padding: "40px",
 
-width:"900px",
+    borderRadius: "var(--radius-md)",
 
-backgroundColor:"white",
+    boxShadow: "var(--shadow-card)"
 
-padding:"40px",
+  },
 
-borderRadius:"var(--radius-md)",
+  imageContainer: {
 
-boxShadow:"var(--shadow-card)"
+    width: "350px",
 
-},
+    height: "450px",
 
+    borderRadius: "var(--radius-md)",
 
+    overflow: "hidden",
 
-imageContainer:{
+    backgroundColor: "#f5efe6"
 
-width:"350px",
+  },
 
-height:"450px",
+  image: {
 
-borderRadius:"var(--radius-md)",
+    width: "100%",
 
-overflow:"hidden",
+    height: "100%",
 
-backgroundColor:"#f5efe6"
+    objectFit: "cover"
 
-},
+  },
 
+  details: {
 
+    display: "flex",
 
-image:{
+    flexDirection: "column",
 
-width:"100%",
+    gap: "15px",
 
-height:"100%",
+    width: "350px"
 
-objectFit:"cover"
+  },
 
-},
+  button: {
 
+    color: "white",
 
+    border: "none",
 
-details:{
+    padding: "14px 25px",
 
-display:"flex",
+    borderRadius: "var(--radius-sm)",
 
-flexDirection:"column",
+    fontWeight: 600,
 
-gap:"15px",
+    cursor: "pointer",
 
-width:"350px"
+    transition: "0.3s ease"
 
-},
+  },
 
+  description: {
 
+    lineHeight: "1.6",
 
-button:{
+    color: "gray"
 
-color:"white",
+  }
 
-border:"none",
-
-padding:"14px 25px",
-
-borderRadius:"var(--radius-sm)",
-
-fontWeight:600,
-
-cursor:"pointer",
-
-transition:"0.3s ease"
-
-},
-
-
-
-description:{
-
-lineHeight:"1.6",
-
-color:"gray"
-
-}
-
-
-}
-
+};
 
 export default ProductDetailsPanel;

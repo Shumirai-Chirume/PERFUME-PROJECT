@@ -13,9 +13,9 @@ function LoginCard() {
   const [password, setPassword] = useState("");
 
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
 
-    const success = login(email, password);
+    const success = await login(email,password);
 
 
     if(success){

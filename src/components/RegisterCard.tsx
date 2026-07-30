@@ -11,20 +11,28 @@ function RegisterCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
 
-    const newUser = {
-      name: fullName,
+    const success = await register(
+      fullName,
       email,
       password
-    };
+    );
 
-    register(newUser);
 
-    alert("Account created successfully!");
+    if(success){
 
-    navigate("/profile");
-  };
+      alert("Account created successfully!");
+
+      navigate("/profile");
+
+    } else {
+
+      alert("Registration failed");
+
+    }
+
+};
 
 
   return (

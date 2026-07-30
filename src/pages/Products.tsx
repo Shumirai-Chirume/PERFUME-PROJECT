@@ -1,12 +1,28 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductsPageNav from "../components/ProductsPageNav";
 import Footer from "../components/Footer";
-import products from "../data/products";
+import { getProducts } from "../api";
+import type { Product } from "../api";
 
 
 function Products() {
 
   const navigate = useNavigate();
+
+  const [products, setProducts] = useState<Product[]>([]);
+
+
+  useEffect(() => {
+
+    getProducts()
+      .then(setProducts)
+      .catch((error) =>
+        console.error("Failed loading products:", error)
+      );
+
+  }, []);
+
 
 
   return (
@@ -107,69 +123,43 @@ const styles:any={
 
 
 title:{
-
 textAlign:"center",
-
 marginBottom:"30px"
-
 },
 
 
 grid:{
-
 display:"grid",
-
 gridTemplateColumns:"repeat(3,1fr)",
-
 gap:"30px"
-
 },
 
 
 card:{
-
 backgroundColor:"white",
-
 padding:"20px",
-
 borderRadius:"var(--radius-md)",
-
 boxShadow:"var(--shadow-card)",
-
 textAlign:"center"
-
 },
 
 
 image:{
-
 width:"100%",
-
 height:"300px",
-
 objectFit:"cover",
-
 borderRadius:"var(--radius-md)"
-
 },
 
 
 button:{
-
 backgroundColor:"var(--gold)",
-
 color:"white",
-
 border:"none",
-
 padding:"12px 20px",
-
 borderRadius:"var(--radius-sm)",
-
 cursor:"pointer",
-
 fontWeight:600
-
 }
 
 

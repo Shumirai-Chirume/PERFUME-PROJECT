@@ -7,6 +7,7 @@ import type { CartItemType } from "../context/CartContext";
 function Cart() {
   const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
 const navigate = useNavigate();
+console.log("Cart items in frontend:", cartItems);
 
   return (
     <section className="section">
@@ -28,16 +29,16 @@ const navigate = useNavigate();
               ) : (
                 cartItems.map((item: CartItemType) => (
                   <CartItem
-                    key={item.id}
-                    name={item.name}
-                    scent={item.scent}
-                    price={item.price}
-                    quantity={item.quantity}
-                    remove={() => removeFromCart(item.id)}
-                    updateQuantity={(qty: number) =>
-                      updateQuantity(item.id, qty)
-                    }
-                  />
+  key={item.id}
+  name={item.name}
+  scent={item.scent}
+  price={item.price}
+  quantity={item.quantity}
+  remove={() => removeFromCart(item.id)}
+  updateQuantity={(qty: number) =>
+    updateQuantity(item.id, qty)
+  }
+/>
                 ))
               )}
 
